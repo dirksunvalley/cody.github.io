@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Colors</title>
+	<style>
+		canvas { margin: 10px; }
+	</style>
+</head>
+
+<body>
+	<p>
+		<canvas id="can1" width=128 height=128></canvas>
+		<canvas id="can2" width=128 height=128></canvas>
+	</p>
+	<p>
+		<canvas id="can3" width=128 height=128></canvas>
+		<canvas id="can4" width=128 height=128></canvas>
+	</p>
+
+	<script>
+		var colors = [
+			"Black", "Sienna", "Coral", "White",
+			"DarkBlue", "Blue", "DeepSkyBlue", "LightSkyBlue",
+			"DarkRed", "Red", "DeepPink", "Pink",
+			"DarkGreen", "ForestGreen", "LimeGreen", "PaleGreen",
+		];
+		var colors2 = [
+			"DarkBlue", "Blue", "DarkGreen", "ForestGreen",
+			"DeepSkyBlue", "LightSkyBlue", "LimeGreen", "PaleGreen",
+			"DarkRed", "Red", "Black", "Sienna",
+			"DeepPink", "Pink", "Coral", "White",
+		];
+
+		draw("can1", "can2", colors);
+		draw("can3", "can4", colors2);
+
+		function draw(canvas1, canvas2, colors) {
+			var c1 = document.getElementById(canvas1).getContext("2d");
+			var c2 = document.getElementById(canvas2).getContext("2d");
+
+			for (var y=0; y<4; y++) {
+				for (var x=0; x<4; x++) {
+					c1.beginPath();
+					c1.rect(x*32, y*32, 32, 32);
+					c1.fillStyle = colors[y*4+x];
+					c1.fill();
+				}
+			}
+
+			var delta = Math.PI / 8;
+			var r = delta / 2;
+			for (var i=0; i<16; i++) {
+				c2.beginPath();
+				c2.moveTo(64, 64);
+				c2.lineTo(100*Math.cos(i*delta+r)+64, 100*Math.sin(i*delta+r)+64);
+				c2.lineTo(100*Math.cos((i+1)*delta+r+0.03)+64, 100*Math.sin((i+1)*delta+r+0.03)+64);
+				c2.fillStyle = colors[i];
+				c2.fill();
+			}
+		}
+	</script>
+</body>
+</html>
