@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <meta charset='utf-8'><meta name='msapplication-tap-highlight' content='no'>
+    <title>Slider</title>
+  </head>
+
+  <body>
+    <div id='app'></div>
+    <script src='bundle.js'></script>
+
+    <!-- Facebook api -->
+    <div id="fb-root"></div>
+    <script id="facebookScript">
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '425135570922068',
+          xfbml      : false,
+          version    : 'v2.0'
+        });
+        afterFacebookInit();
+      };
+      (function(d, s, id){
+        var js, fjs = d.getElementById('facebookScript');
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/de_DE/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+  </body>
+
+</html>
